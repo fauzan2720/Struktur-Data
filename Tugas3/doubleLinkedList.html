@@ -1,0 +1,175 @@
+<script>
+    function Node(data) {
+        this.data = data;
+        this.next = null;
+        this.prev = null;
+    }
+
+    function doubleLinkedList() {
+        this.head = null;
+        this.tail = null;
+        this.size = 0;
+        this.addLast = addLast;
+        this.addFirst = addFirst;
+        this.addMiddle = addMiddle;
+        this.deleteLast = deleteLast;
+        this.deleteFirst = deleteFirst;
+        this.deleteAtPosition = deleteAtPosition;
+        this.length = length;
+        this.show = show;
+    }
+
+    // menambah nilai diakhir
+    function addLast(data) {
+        let newNode = new Node(data);
+        if (this.head == null) {
+            this.head = node;
+        } else {
+            this.tail.next = newNode;
+            newNode.prev = this.tail;
+        }
+        this.tail = newNode;
+        console.log("Menambah node di akhir: " +data);
+        this.size++;
+    }
+
+    // menambah nilai diawal
+    function addFirst(data) {
+        let newNode = new Node(data);
+        if (this.head == null) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            newNode.next = this.head;
+        }
+        this.head.prev = this.head;
+        this.head = newNode;
+        console.log("Menambah node di depan: " +data);
+        this.size++;
+    }
+
+    // menambah node di tengah
+    function addMiddle(data) {
+        let newNode = new Node(data);
+        if (this.head == null) {
+            this.head = this.tail = newNode;
+            this.head.prev = null;
+            this.tail.next = null;
+        } else {
+            let current = this.head, temp = null;
+            let middle = (this.size % 2 == 0) ? (this.size / 2) : ((this.size + 1) / 2);
+            for (let i = 1; i < middle; i++) {
+                current = current.next;
+            }
+
+            temp = current.next;
+            temp.prev = current;
+            current.next = newNode;
+            newNode.prev = current;
+            newNode.next = temp;
+            temp.prev = newNode;
+        }
+        console.log("Menambah node di tengah: " +data);
+        this.size++;
+    }
+
+    // menghapus node di akhir
+    function deleteLast() {
+        let temp = this.tail;
+        if (this.head.next == null) {
+            this.head = null;
+        } else {
+            this.tail.prev.next = null;
+        }
+        this.tail = this.tail.prev;
+        console.log("Menghapus node terakhir: " +temp.data);
+        this.size--;
+        return temp;
+    }
+
+    // menghapus node di awal
+    function deleteFirst() {
+        let temp = this.head;
+        if (this.head.next == null) {
+            this.tail = null;
+        } else {
+            this.head.next.prev = null;
+        }
+        this.head = this.head.prev;
+        console.log("Menghapus node awal: " +temp.data);
+        this.size--;
+        return temp;
+    }
+
+    // menghapus di posisi tertentu
+    function deleteAtPosition(position) {
+        if (position < 1) {
+            console.log("Posisi node tidak ditemukan!");
+        } else if(position == 1 || this.head != null) {
+            console.log("Menghapus node diposisi ke-" +position +": " +this.head.data);
+            let deleteNode = this.head;
+            this.head = this.head.next;
+            deleteNode = null;
+            if (this.head != null) {
+                this.head.prev = null;
+                this.size--;
+            } else {
+                let temp = new Node();
+                temp = this.head;
+                for (let i = 1; i < position-1; i++) {
+                    if (temp != null) {
+                        temp = temp.next;
+                    }
+                }
+
+                if (temp != null || temp.next != null) {
+                    let deleteNode = temp.next;
+                    temp.next = temp.next.next;
+                    if (temp.next != null) {
+                        temp.next.prev = temp.next;
+                    }
+                    console.log("Menghapus node diposisi ke-" +position +": " +this.head.data);
+                    deleteNode = null;
+                    this.size--;
+                } else {
+                    console.log("Posisi node tidak ditemukan");
+                }
+            }
+        }
+    }
+
+    // menentukan panjang data
+    function length() {
+        console.log("Panjang data: " +this.size);
+    }
+
+    // menampilkan data
+    function show() {
+        console.log("Data: ");
+        let current = this.head;
+        while (current != null) {
+            console.log(current.data);
+            current = current.next;
+        }
+    }
+
+    let data = new doubleLinkedList();
+    data.addFirst(111);
+    data.addFirst(222);
+    data.addFirst(333);
+    data.show();
+
+    data.addLast(444);
+    data.show();
+
+    data.addMiddle(555);
+    data.show();
+
+    data.deleteLast();
+    data.show();
+
+    data.deleteAtPosition(1);
+    data.show();
+
+    data.length();
+</script>

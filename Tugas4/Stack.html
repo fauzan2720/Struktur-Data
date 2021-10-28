@@ -1,0 +1,74 @@
+<script>
+    class stack {
+        constructor(max = 0) {
+            this.max = max;
+            this.size = 0;
+            this.dataStore = [];
+        }
+
+        stackFull() {
+            if (this.size == this.max) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        push(data) {
+            if (this.stackFull()) {
+                console.log("Stack is full");
+            } else {
+                this.dataStore [this.dataStore.length] = data;
+                this.size++;
+            }
+        }
+
+        pop() {
+            console.log("Remove: " +this.dataStore[this.dataStore.length - 1]);
+            this.dataStore.length = this.dataStore.length - 1;
+            this.size--;
+        }
+
+        clear() {
+            this.dataStore.length = 0;
+            this.size = 0;
+            console.log("Stack is clear");
+        }
+
+        show() {
+            if (this.size == 0) {
+                console.log("Stack is empty!");
+            } else {            
+                let result = "";
+                for (let i = 0; i < this.dataStore.length; i++) {
+                    result += this.dataStore[i] +" ";
+                }
+                console.log(result);
+            }
+        }
+    }
+
+    let data = new stack(5);
+    data.push(11);
+    data.show();
+    data.push(22);
+    data.show();
+    
+    data.pop();
+    data.show();
+    
+    data.push(33);
+    data.show();
+    data.push(44);
+    data.show();
+
+    data.push(55);
+    data.show();
+    data.push(66);
+    data.show();
+    data.push(77);
+    data.show();
+
+    data.clear();
+    data.show();
+</script>

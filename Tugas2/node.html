@@ -1,0 +1,161 @@
+<script>
+    function Node(data) {
+        this.data = data;
+        this.next = null;
+    }
+
+    function LinkedList() {
+        this.head = null;
+        this.size = 0;
+        this.addEnd = addEnd;
+        this.addFirst = addFirst;
+        this.addMiddle = addMiddle;
+        this.removeEnd = removeEnd;
+        this.removeFirst = removeFirst;
+        this.removeAtPosition = removeAtPosition;
+        this.length = length;
+        this.display = display;
+        this.show = show;
+    }
+
+    function addEnd(element) {
+        var node = new Node(element);
+        var currNode;
+        if (!this.head) {
+            this.head = node;
+        } else {
+            currNode = this.head;
+            while (currNode.next) {
+                currNode = currNode.next;
+            }
+            currNode.next = node;
+        }
+        this.size++;
+    }
+
+    function addFirst(element) {
+        var node = new Node(element);
+        var currNode = this.head;
+        if (!this.head) {
+            this.head = node;
+        } else {
+            node.next = this.head;
+            this.head = node;
+        }
+        this.size++;
+    }
+
+    function addMiddle(element) {
+        var node = new Node(element);
+        var currNode = this.head;
+        var prevNode;
+        var repetition = 0;
+        while (repetition < this.size/2) {
+            repetition++
+            prevNode = currNode;
+            currNode = currNode.next;
+        }
+        node.next = currNode;
+        prevNode.next = node;
+        this.size++;
+    }
+
+    function removeEnd() {
+        var currNode = this.head;
+        var prevNode;
+        var repetition = 0;
+        while (repetition < this.size-1) {
+            repetition++
+            prevNode = currNode;
+            currNode = currNode.next;
+        }
+        prevNode.next = null;
+        this.size--;
+    }
+
+    function removeFirst() {
+        var currNode = this.head;
+        this.head = currNode.next;
+        this.size--;
+    }
+
+    function removeAtPosition(i) {
+        var currNode = this.head;
+        var prevNode;
+        var repetition = 0;
+        if (i == 0) {
+            this.removeFirst();
+        } else {
+            for (var j = 0; j < i; j++) {
+                repetition++;
+                prevNode = currNode;
+                currNode = currNode.next;
+            }
+            prevNode.next = currNode.next;
+            document.writeln((i+1) +': ');
+        }
+        this.size--;
+    }
+
+    function length() {
+        document.writeln('<b>' +this.size +'</b>');
+    }
+
+    function display() {
+        var currNode = this.head;
+        while (currNode) {
+            document.write('<b>' +currNode.data +' </b>');
+            currNode = currNode.next;
+        }
+    }
+    
+    function show(n) {
+        var currNode = this.head;
+        var repetition = 0;
+        for (var i = 0; i < n; i++) {
+            repetition++;
+            currNode = currNode.next;
+        }
+        document.write((n+1) +': ');
+        document.write('<b>' +currNode.data +'</b>');
+    }
+    
+
+    var mhs = new LinkedList();
+    document.writeln('Data awal:')
+    mhs.addFirst(1111);
+    mhs.addEnd(2222);
+    mhs.addEnd(3333);
+    mhs.addEnd(4444);
+    mhs.display();
+
+    document.writeln('<br><br>1. Menambahkan Node di Belakang: ');
+    mhs.addEnd(5555);
+    mhs.display();
+
+    document.writeln('<br>2. Menambahkan Node di Depan: ');
+    mhs.addFirst('0000');
+    mhs.display();
+    
+    document.writeln('<br>3. Menambahkan Node di Tengah: ')
+    mhs.addMiddle(2233);
+    mhs.display();
+    
+    document.writeln('<br>4. Hapus Node Paling Akhir: ')
+    mhs.removeEnd();
+    mhs.display();
+    
+    document.writeln('<br>5. Hapus Node Pertama: ')
+    mhs.removeFirst();
+    mhs.display();
+    
+    document.writeln('<br>6. Hapus Node di Posisi ke')
+    mhs.removeAtPosition(2);
+    mhs.display();
+    
+    document.writeln('<br>7. Panjang Linked List: ')
+    mhs.length();
+    
+    document.writeln('<br>8. Menampilkan Node di Posisi ke ')
+    mhs.show(2);
+</script>

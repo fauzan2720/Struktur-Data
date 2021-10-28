@@ -1,0 +1,50 @@
+<script>
+    let array = [22, 52, 11];
+    let nilaiMax = array[0], nilaiMin = array[0];
+    
+    // memanggil matriks
+    function show() {
+        document.writeln("Diketahui suatu matriks = [ ");
+        for (let i = 0; i < array.length; i++) {
+            let nilai = array[i];
+            document.writeln(nilai +" ");
+        }
+        document.writeln("] <br><br>");        
+    }
+
+    // fungsi nilai maksimum
+    function nMax() {
+        for (let i = 1; i < array.length; i++) {
+            document.writeln("Apakah " +array[i] +" > " +nilaiMax +"? ");
+            if (array[i] > nilaiMax) {
+                nilaiMax = array[i];
+                document.writeln("Iya, maka nilai maksimum = " +nilaiMax +"<br>");
+            } else {
+                document.writeln("Tidak, maka nilai maksimum tetap = " +nilaiMax +"<br>");
+            }
+        }
+        document.writeln("Nilai maksimum data tersebut adalah = " +nilaiMax +"<br><br>");
+    }
+
+    // fungsi nilai minimum
+    function nMin() {
+        for (let i = 1; i < array.length; i++) {
+            document.writeln("Apakah " +array[i] +" < " +nilaiMin +"? ");
+            if (array[i] < nilaiMin) {
+                nilaiMin = array[i];
+                document.writeln("Iya, maka nilai minimum = " +nilaiMin +"<br>");
+            } else {
+                document.writeln("Tidak, maka nilai minimum tetap = " +nilaiMin +"<br>");
+            }
+        }
+        document.writeln("Nilai minimum data tersebut adalah " +nilaiMin +"<br><br>");        
+    }
+
+    // output
+    show();
+    nMax();
+    nMin();
+
+
+
+</script>

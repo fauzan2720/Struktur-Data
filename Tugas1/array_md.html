@@ -1,0 +1,127 @@
+<script>
+    let array = [
+            [22, 55, 33],
+            [11, 66, 44]
+        ];
+        
+    let baris = array.length;
+    let kolom = array[0].length;
+
+    // memanggil matriks
+    function show() {
+        for (let i = 0; i < baris; i++) {
+            document.writeln("[");
+            for (let j = 0; j < kolom; j++) {
+                document.writeln(array[i][j] +" ");
+            }
+            document.writeln("]");
+            document.writeln("<br>");
+        }
+        document.writeln("<br>");        
+    }
+
+    // fungsi nilai maksimum
+    function nMax() {
+        let nilaiMax = array[0][0];
+        for (let i = 0; i < baris; i++) {
+            for (let j = 0; j < kolom; j++) {
+                document.writeln("Apakah " +array[i][j] +" > " +nilaiMax +"? ");
+                if (array[i][j] > nilaiMax) {
+                    nilaiMax = array[i][j];
+                    document.writeln("Iya, maka nilai maksimum = " +nilaiMax +"<br>");
+                } else {
+                    document.writeln("Tidak, maka nilai maksimum tetap = " +nilaiMax +"<br>");
+                }
+            }
+        }
+        document.writeln("<b>Nilai maksimum = " +nilaiMax +"<br><br></b>");
+    }
+
+    // fungsi nilai minimum
+    function nMin() {
+        let nilaiMin = array[0][0];
+        for (let i = 0; i < baris; i++) {
+            for (let j = 0; j < kolom; j++) {
+                document.writeln("Apakah " +array[i][j] +" < " +nilaiMin +"? ");
+                if (array[i][j] < nilaiMin) {
+                    nilaiMin = array[i][j];
+                    document.writeln("Iya, maka nilai minimum = " +nilaiMin +"<br>");
+                } else {
+                    document.writeln("Tidak, maka nilai minimum tetap = " +nilaiMin +"<br>");
+                }
+            }
+        }
+        document.writeln("<b>Nilai minimum = " +nilaiMin +"<br><br></b>");
+    }
+
+    // fungsi nilai rata-rata
+    function rata_rata() {
+        let jumlah = 0, banyak = 0;
+        for (let i = 0; i < baris; i++) {
+            for (let j = 0; j < kolom; j++) {
+                jumlah += array[i][j];
+                banyak++;
+            }
+        }
+        let rata = jumlah/banyak;
+
+        document.writeln("Jumlah data = " +jumlah +"<br>");
+        document.writeln("Banyak data = " +banyak +"<br>");
+        document.writeln("<b>Rata-rata = " +jumlah +"/" +banyak +" = " +rata +"<br><br></b>");
+    }
+
+    // fungsi nilai total
+    function total() {
+        let jumlah = 0;
+        for (let i = 0; i < baris; i++) {
+            for (let j = 0; j < kolom; j++) {
+                jumlah += array[i][j];
+            }
+        }
+        document.writeln("<b>Nilai total = " +jumlah +"<br><br></b>");
+    }
+
+    // fungsi jumlah nilai dibawah rata-rata
+    function jd_rata_rata() {
+        // membuat nilai rata-rata
+        let jumlah = 0, banyak = 0;
+        for (let i = 0; i < baris; i++) {
+            for (let j = 0; j < kolom; j++) {
+                jumlah += array[i][j];
+                banyak++;
+            }
+        }
+        let rata = jumlah/banyak;
+
+        // menghitung nilai dibawah rata-rata
+        let total = 0;
+        document.writeln("Nilai rata-rata = " +rata +"<br>");
+        for (let i = 0; i < baris; i++) {
+            for (let j = 0; j < kolom; j++) {
+                document.writeln("Apakah " +array[i][j] +" < " +rata +"? ");
+                if (array[i][j] < rata) {
+                    document.writeln("Iya, maka " +array[i][j] +" + " +total +" = ");
+                    total += array[i][j];
+                    document.writeln(total +"<br>");
+                } else {
+                    document.writeln("Tidak" +"<br>");
+                }
+            }
+        }
+        document.writeln("<b>Jumlah nilai dibawah rata-rata = " +jumlah +"<br><br></b>");
+    }
+
+    // output
+    document.writeln("Diketahui suatu matriks = <br>");
+    show();
+    document.writeln("1. Menentukan nilai maksimum <br>");
+    nMax();
+    document.writeln("2. Menentukan nilai minimum <br>");
+    nMin();
+    document.writeln("3. Menentukan nilai rata-rata <br>");
+    rata_rata();
+    document.writeln("4. Menentukan nilai total <br>");
+    total();
+    document.writeln("5. Menentukan jumlah nilai dibawah rata-rata <br>");
+    jd_rata_rata();
+</script>
